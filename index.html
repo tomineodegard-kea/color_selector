@@ -4,10 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Color selector</title>
   </head>
   <body>
-    <input type="color" />
+    <main>
+      <h1>Color selector</h1>
+      <section id="container">
+        <label class="selector_label">Click here to select a color:<input id="colorinput" type="color" value="#ffffff" /></label>
+
+        <div id="colorbox"></div>
+        <div id="color_values">
+          <p>HEX:</p>
+          <p class="hex_value"></p>
+          <p>RGB:</p>
+          <p class="rgb_value"></p>
+          <p>HSL:</p>
+          <p class="hsl_value"></p>
+        </div>
+      </section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
