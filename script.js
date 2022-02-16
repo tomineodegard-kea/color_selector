@@ -1,112 +1,96 @@
-window.addEventListener("DOMContentLoaded", start);
+"use strict";
+window.addEventListener("load", start);
 
+// init function
 function start() {
-  console.log("Ready");
-  showColor();
-  document.querySelector("#colorinput").addEventListener("input", showColor);
+  document.querySelector("#colorinput").addEventListener("input", displayColor);
+  displayColor();
 }
 
+// Get color a from the userinput
 function getColor() {
-  let colorInput = document.querySelector("#colorinput");
-  // console.log(colorInput.value);
-  return colorInput.value;
+  let getColor = document.querySelector("#colorinput").value;
+  return getColor;
 }
 
-function showColor() {
-  let hexString = getColor();
-  let rgbValue = hexToRGB(hexString);
-  let hexValue = rgbToHEX(rgbValue);
-  let hslValue = rgbToHSL(rgbValue);
-  changeBoxColor(hexValue);
-  displayHexColor(hexValue);
-  displayRgbColor(rgbValue);
-  displayHslColor(hslValue);
+function displayColor() {
+  let hexCode = getColor();
+  let rgbVal = hexToRGB(hexCode);
+  changeColorBox(hexCode);
+
+  let hexVal = rgbToHex(rgbVal);
+  let hslVal = rgbToHSL(rgbVal);
+
+  displayHex(hexCode);
+  displayRGB(rgbVal);
+  displayHSL(hslVal);
 }
 
-function changeBoxColor(hexValue) {
-  document.querySelector("#colorbox").style.backgroundColor = hexValue;
+// Change color of box based on color input
+function changeColorBox(hexVal) {
+  document.querySelector("#colorbox").style.backgroundColor = hexVal;
+}
+// Convert from rgb to HEX
+function rgbToHex(values) {
+  let r = values.r.toString(16);
+  let g = values.g.toString(16);
+  let b = values.b.toString(16);
+
+  let hexCode = "#" + r + g + b;
+
+  return hexCode;
 }
 
-function displayHexColor(hexValue) {
-  document.querySelector(".hex_value").innerHTML = hexValue;
+function rgbToCssColor(values) {}
+
+// Display hex code based on color input
+function displayHex(hexCode) {
+  document.querySelector(".hex_value").textContent = `Hex code: ${hexCode}`;
 }
 
-function displayRgbColor(rgbValue) {
-  document.querySelector(".rgb_value").innerHTML = `${rgbValue.r}, ${rgbValue.g}, ${rgbValue.b}`;
-}
+// Convert from hex to rgb
+function hexToRGB(hexCode) {
+  let r = parseInt(hexCode.substring(1, 3), 16);
+  let g = parseInt(hexCode.substring(3, 5), 16);
+  let b = parseInt(hexCode.substring(5, 7), 16);
 
-function displayHslColor(hslColor) {
-  let h = hslColor.h.toFixed().toString();
-  let s = hslColor.s.toFixed().toString();
-  let l = hslColor.l.toFixed().toString();
-
-  document.querySelector(".hsl_value").innerHTML = `${h}. ${s}%, ${l}%`;
-}
-
-function hexToRGB(hexString) {
-  hexString.replaceAll(" ", "");
-
-  // console.log(hexString);
-  let r = parseInt(hexString.substring(1, 3), 16);
-  let g = parseInt(hexString.substring(3, 5), 16);
-  let b = parseInt(hexString.substring(5), 16);
-
-  return {
+  let values = {
     r,
     g,
     b,
   };
+
+  return values;
 }
 
-function rgbToCssColor(rgbObject) {
-  let r = rgbObject.r;
-  let g = rgbObject.g;
-  let b = rgbObject.b;
-
-  return `rgb(${r}, ${g}, ${b})`;
+// Display rgb efter conversion
+function displayRGB(values) {
+  document.querySelector(".rgb_value").textContent = `RGB values: ${values.r}. ${values.g}. ${values.b}`;
 }
 
-function rgbToHEX(rgbObject) {
-  let redHexValue = rgbObject.r.toString(16);
-  if (redHexValue.length == 1) {
-    redHexValue = "0" + redHexValue;
-  }
-  let greenHexValue = rgbObject.g.toString(16);
-  if (greenHexValue.length == 1) {
-    greenHexValue = "0" + greenHexValue;
-  }
-  let blueHexValue = rgbObject.b.toString(16);
-  if (blueHexValue.length == 1) {
-    blueHexValue = "0" + blueHexValue;
-  }
+// Convert from rgb to hsl
+function rgbToHSL(values) {
+  let R = values.r;
+  let G = values.g;
+  let B = values.b;
 
-  let hexString = "#" + redHexValue + greenHexValue + blueHexValue;
-
-  return hexString;
-}
-
-function rgbToHSL(rgbValue) {
-  let r = rgbValue.r;
-  let g = rgbValue.g;
-  let b = rgbValue.b;
-
-  r /= 255;
-  g /= 255;
-  b /= 255;
+  R /= 255;
+  G /= 255;
+  B /= 255;
 
   let h, s, l;
 
-  const min = Math.min(r, g, b);
-  const max = Math.max(r, g, b);
+  const min = Math.min(R, G, B);
+  const max = Math.max(R, G, B);
 
   if (max === min) {
     h = 0;
-  } else if (max === r) {
-    h = 60 * (0 + (g - b) / (max - min));
-  } else if (max === g) {
-    h = 60 * (2 + (b - r) / (max - min));
-  } else if (max === b) {
-    h = 60 * (4 + (r - g) / (max - min));
+  } else if (max === R) {
+    h = 60 * (0 + (G - B) / (max - min));
+  } else if (max === G) {
+    h = 60 * (2 + (B - R) / (max - min));
+  } else if (max === B) {
+    h = 60 * (4 + (R - G) / (max - min));
   }
 
   if (h < 0) {
@@ -124,10 +108,17 @@ function rgbToHSL(rgbValue) {
   s *= 100;
   l *= 100;
 
-  // console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   return {
     h,
     s,
     l,
   };
+}
+
+// Display hsl after conversion
+function displayHSL(hslVal) {
+  let h = hslVal.h.toFixed(0);
+  let s = hslVal.s.toFixed(0);
+  let l = hslVal.l.toFixed(0);
+  document.querySelector(".hsl_value").textContent = h + "%. " + s + "%. " + l + "%";
 }
