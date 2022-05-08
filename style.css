@@ -1,38 +1,127 @@
+:root {
+	--firstColor: rgb(255, 255, 255);
+	--secondColor: rgb(255, 255, 255);
+	--thirdColor: rgb(255, 255, 255);
+	--fourthColor: rgb(255, 255, 255);
+	--selectedColor: rgb(255, 255, 255);
+}
+
 * {
-  margin: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.main_container {
-  height: 100vh;
-  width: 100vw;
+.first_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 2rem;
+  padding: 6rem;
 }
 
-.colorselector_container {
-  background-color: whitesmoke;
-  max-width: 320px;
-  padding: 2em;
-  border-radius: 10px;
-  margin: 4em;
-}
-
-.selector_label {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.color_values_container {
+.step_by_step {
   display: flex;
   flex-direction: column;
-  padding: 1em;
-  gap: 0.5rem;
+  gap: 2rem;
 }
 
-#colorbox {
-  height: 10em;
+h4,
+label,
+p {
+	font-size: 0.8rem;
+}
+
+.colors {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+}
+
+.color_sections {
+	height: 50vh;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.display_colors {
   box-shadow: 0 0.3rem 0.6rem -0.2rem rgba(0, 0, 0, 0.331);
-  border-radius: 10px;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+}
+
+.chosen_color_values {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  background: rgb(244, 244, 244);
+	box-shadow: 0 0.3rem 0.6rem -0.2rem rgba(0, 0, 0, 0.331);
+  padding: 1rem;
+}
+
+.color {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.color1 {
+	background: var(--firstColor);
+}
+.color2 {
+	background: var(--secondColor);
+}
+.color3 {
+	background: var(--selectedColor);
+}
+.color4 {
+	background: var(--thirdColor);
+}
+.color5 {
+	background: var(--fourthColor);
+}
+
+.colorpicker {
+	display: flex;
+	flex-direction: column;
+	background: rgb(244, 244, 244);
+	box-shadow: 0 0.3rem 0.6rem -0.2rem rgba(0, 0, 0, 0.331);
+  padding: 1rem;
+  justify-content: space-evenly;
+}
+
+
+.colorpicker_container {
+	height: 5rem;
+	display: flex;
+	flex-direction: column;
+  gap: 2rem;
+}
+
+
+input[type="color"] {
+	border: none;
+	background: transparent;
+	height: 100%;
+	width: 100%;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border-radius: 10px;
+	border: 2px #fff solid;
+}
+
+
+@media (max-width: 850px) {
+  .first_section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step_by_step {
+    gap: 0;
+  }
+
 }

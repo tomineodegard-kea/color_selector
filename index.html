@@ -5,23 +5,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Improved color selector</title>
+    <title>Color palette designer</title>
   </head>
   <body>
-    <section>
-      <div class="main_container">
-        <div class="colorselector_container">
-          <label class="selector_label">Select a color:<input id="colorinput" type="color" value="#ffffff" /></label>
-
-          <div id="colorbox"></div>
-          <div class="color_values_container">
-            <p class="hex_value"></p>
-            <p class="rgb_value"></p>
-            <p class="hsl_value"></p>
+    <main>
+    <section class="first_section">
+        <div class="step_by_step">
+          <h2>Step 1</h2>
+          <div class="colorpicker">
+              <label for="colorscheme">Chose prefered color palette</label>
+              <select name="colorscheme" id="colorscheme">
+                <option value="analogous" selected>Analogous</option>
+                <option value="monochrome">Monochrome</option>
+                <option value="triad">Triad</option>
+                <option value="complementary">Complementary</option>
+                <option value="compound">Compound</option>
+                <option value="shades">Shades</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="step_by_step">
+            <h2>Step 2</h2>
+            <div class="colorpicker">
+              <div class="colorpicker_container">
+                <label for="color">Pick a color</label>
+                <input id="color" type="color" name="color" value="#ffffff" />
+              </div>
+            </div>
+          </div>
+          
+          <div class="step_by_step">
+          <h2>Values of chosen color</h2>
+          <div class="chosen_color_values">
+            <div>
+              <h4 class="hex">%HEX%</h4>
+              <h4 class="rgb">%RGB%</h4>
+              <h4 class="hsl">%HSL%</h4>
+              <h4 class="css">%CSS%</h4>
+              <div class="color"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+       </section>
+
+
+    <section class="display_colors">
+			<div class="color_sections">
+				<section class="color1 color">
+					<div>
+						<p>#</p>
+						<p>RGB</p>
+						<p>HSL</p>
+						<p>rgb()</p>
+					</div>
+				</section>
+
+				<section class="color2 color">
+					<div>
+						<p>#</p>
+						<p>RGB</p>
+						<p>HSL</p>
+						<p>rgb()</p>
+					</div>
+				</section>
+
+				<section class="color3 color">
+					<div>
+						<p>#</p>
+						<p>RGB</p>
+						<p>HSL</p>
+						<p>rgb()</p>
+					</div>
+				</section>
+
+				<section class="color4 color">
+					<div>
+						<p>#</p>
+						<p>RGB</p>
+						<p>HSL</p>
+						<p>rgb()</p>
+					</div>
+				</section>
+
+				<section class="color5 color">
+					<div>
+						<p>#</p>
+						<p>RGB</p>
+						<p>HSL</p>
+						<p>rgb()</p>
+					</div>
+				</section>
+			</div>
+		</section>
+  </main>
 
     <script src="script.js"></script>
   </body>
